@@ -10,16 +10,19 @@ public class CutStamp
 	{
 		bo[x] = false;
 		tmp++;
+		// 上
 		if (x > 4)
 		{
 			if (bo[x - 4])
 				floodfill(bo, x - 4);
 		}
+		// 左
 		if (x % 4 != 1)
 		{
 			if (bo[x - 1])
 				floodfill(bo, x - 1);
 		}
+		// 
 		if (x % 4 != 0)
 		{
 			if (bo[x + 1])
@@ -52,9 +55,9 @@ public class CutStamp
 		if (num == 5)
 		{
 			check();
-			for (int i = 0; i < 13; i++)
+			/*for (int i = 0; i < 13; i++)
 				System.out.print(bo[i] + " ");
-			System.out.println();
+			System.out.println();*/
 			return;
 		}
 		if (beg == 12)
