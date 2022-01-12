@@ -1,23 +1,13 @@
 package jianzhioffer;
 
-import com.fasterxml.jackson.core.json.JsonReadContext;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class StringTiMu {
     private List<String> paiLie = new ArrayList<>();
 
     public static void main(String[] args) {
         StringTiMu tiMu = new StringTiMu();
-        System.out.println(tiMu.minWindow("a", "a"));
+        System.out.println(tiMu.validPalindrome("abc"));
     }
 
     public boolean checkInclusion(String s1, String s2) {
@@ -111,6 +101,51 @@ public class StringTiMu {
     public boolean match(Map<Character, Integer> indexMap, Map<Character, Integer> targetsCount) {
         for (Map.Entry<Character, Integer> entry : targetsCount.entrySet()) {
             if (indexMap.getOrDefault(entry.getKey(), 0) < entry.getValue()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int countSubstrings(String s) {
+        int res = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = 1; j < s .length() - i + 1; j++) {
+                String a = s.substring(i, i + j);
+//                System.out.println(i + ", " + j + ", " + a);
+                if (judgeHuiWen(a)) {
+                    res ++;
+                    System.out.println(a);
+                }
+            }
+        }
+        return res;
+    }
+
+    public boolean isPalindrome(String s) {
+        char c;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            c = s.charAt(i);
+            if (('A' <= c && 'Z' >= c) || ('a' <= c && 'z' >= c) || ('0' <= c && '9' >= c)) {
+                sb.append(c);
+            }
+        }
+        return judgeHuiWen(sb.toString().toLowerCase());
+    }
+
+    public boolean validPalindrome(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (judgeHuiWen(s.substring(0, i) + s.substring(i + 1, s.length()))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean judgeHuiWen(String s) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - 1 - i)) {
                 return false;
             }
         }
