@@ -74,6 +74,7 @@ public class NQueens
 	{
 		if (t > N)
 		{
+		    System.out.println(chessboard);
 			sum++;
 		}
 		else

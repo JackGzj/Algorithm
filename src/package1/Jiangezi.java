@@ -45,7 +45,17 @@ public class Jiangezi
 	public static int dfs (int x, int y, int num)
 	{
 		if (num == sum)
+		{
+		    for (int i = 0; i < hang; i++)
+		    {
+		        for (int j = 0; j < lie; j++)
+		        {
+		            System.out.print(visit[i][j] + " ");
+		        }
+		        System.out.println();
+		    }
 			return 1;
+		}
 		int ans = 0;
 		for (int i = 0; i < 4; i++)
 		{

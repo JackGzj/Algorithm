@@ -55,9 +55,9 @@ public class CutStamp
 		if (num == 5)
 		{
 			check();
-			/*for (int i = 0; i < 13; i++)
+			for (int i = 0; i < 13; i++)
 				System.out.print(bo[i] + " ");
-			System.out.println();*/
+			System.out.println();
 			return;
 		}
 		if (beg == 12)
