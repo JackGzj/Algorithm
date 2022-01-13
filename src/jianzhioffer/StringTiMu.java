@@ -7,7 +7,7 @@ public class StringTiMu {
 
     public static void main(String[] args) {
         StringTiMu tiMu = new StringTiMu();
-        System.out.println(tiMu.validPalindrome("abc"));
+        System.out.println(tiMu.validPalindrome("aba"));
     }
 
     public boolean checkInclusion(String s1, String s2) {
@@ -135,12 +135,13 @@ public class StringTiMu {
     }
 
     public boolean validPalindrome(String s) {
-        for (int i = 0; i < s.length(); i++) {
-            if (judgeHuiWen(s.substring(0, i) + s.substring(i + 1, s.length()))) {
-                return true;
+        for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
+            if (s.charAt(i) != s.charAt(j)) {
+                System.out.println(String.format("%d, %d: %s, %s", i, j, s.substring(i + 1, j + 1), s.substring(i, j)));
+                return judgeHuiWen(s.substring(i + 1, j + 1)) || judgeHuiWen(s.substring(i, j));
             }
         }
-        return false;
+        return true;
     }
 
     public boolean judgeHuiWen(String s) {
