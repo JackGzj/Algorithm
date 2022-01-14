@@ -40,7 +40,7 @@ public class Solution {
             head = head.next;
         }
         System.out.println(minH + ", " + maxH + "， " + maxH.next);
-        if (insertVal <= minH.val || insertVal >= max) {
+        if (insertVal <= minH.val || insertVal >= maxH.val) {
             System.out.println("head insert point: " + minH + ", " + minH.next);
             // 在min前插入，即 maxH 后 minH 前
             Node n = new Node(insertVal, maxH.next);
