@@ -89,6 +89,61 @@ public class LinkedListTiMu {
         return null;
     }
 
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ArrayList<Integer> n1 = new ArrayList<>(), n2 = new ArrayList<>(), res = new ArrayList<>();
+        while (l1 != null) {
+            n1.add(l1.val);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            n2.add(l2.val);
+            l2 = l2.next;
+        }
+        // ensure n1 longer then n2
+        if (n1.size() < n2.size()) {
+            ArrayList tmp = n1;
+            n1 = n2;
+            n2 = tmp;
+        }
+        // sum same part
+        int jinWei = 0, tmp, diff = n1.size() - n2.size();
+        for (int i = n2.size() - 1; i >= 0; i--) {
+            tmp = jinWei + n1.get(i + diff) + n2.get(i);
+//            System.out.println(n1.get(i + diff) + ", " + n2.get(i) + ", " + tmp + ", " + jinWei);
+            if (tmp > 9) {
+                jinWei = tmp / 10;
+                tmp %= 10;
+            } else {
+                jinWei = 0;
+            }
+            res.add(tmp);
+        }
+        for (int i = diff - 1; i >= 0; i--) {
+            tmp = jinWei + n1.get(i);
+            if (tmp > 9) {
+                jinWei = tmp / 10;
+                tmp %= 10;
+            } else {
+                jinWei = 0;
+            }
+            res.add(tmp);
+        }
+        if (jinWei > 0) {
+            res.add(jinWei);
+        }
+//        System.out.println(res);
+        if (res.size() == 1) {
+            return new ListNode(res.get(0));
+        }
+        ListNode pre = new ListNode(res.get(res.size() - 1)), temp = null, head = pre;
+        for (int i = res.size() - 2; i >= 0; i--) {
+            temp = new ListNode(res.get(i));
+            pre.next = temp;
+            pre = temp;
+        }
+        return head;
+    }
+    
     /**
      * 剑指 Offer II 026. 重排链表
      * https://leetcode-cn.com/problems/LGjMqU/
