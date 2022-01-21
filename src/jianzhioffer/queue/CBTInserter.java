@@ -1,6 +1,7 @@
 package jianzhioffer.queue;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -8,64 +9,9 @@ import java.util.Queue;
 import java.util.stream.Collectors;
 
 public class CBTInserter {
+    static int idx = 0;
     TreeNode root;
     Deque<TreeNode> deque;
-
-    public static void main(String[] args) {
-        TreeNode node9 = new TreeNode(1), node5 = new TreeNode(4), node3_1 = new TreeNode(5);
-        TreeNode node3 = new TreeNode(3, node5, node3_1), node2 = new TreeNode(2, null, null);
-        TreeNode root = new TreeNode(1, node2, node3);
-        System.out.println(serialize(root));
-        System.out.println(serializeT(root));
-    }
-
-    // Encodes a tree to a single string.
-    public static String serialize(TreeNode root) {
-        List<String> res = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        res.add(Integer.toString(root.val));
-        TreeNode node;
-        while (!queue.isEmpty()) {
-            node = queue.poll();
-            System.out.println(node);
-            if (node.left != null) {
-                queue.add(node.left);
-                res.add(Integer.toString(node.left.val));
-            } else {
-                res.add("null");
-            }
-            if (node.right != null) {
-                queue.add(node.right);
-                res.add(Integer.toString(node.right.val));
-            } else {
-                res.add("null");
-            }
-        }
-        return res.stream().collect(Collectors.joining(","));
-    }
-
-    public static String serializeT(TreeNode root) {
-        if(root == null) {
-            return null;
-        }
-        return serialize(root, new StringBuilder()).toString();
-    }
-    public static StringBuilder serialize(TreeNode root, StringBuilder sb) {
-        if(root == null) {
-            sb.append("null,");
-            return sb;
-        }
-        sb.append(root.val + ",");
-        sb = serialize(root.left, sb);
-        sb = serialize(root.right, sb);
-        return sb;
-    }
-
-    // Decodes your encoded data to tree.
-//    public TreeNode deserialize(String data) {
-//
-//    }
 
     public static TreeNode pruneTree(TreeNode root) {
         if (root == null) {
@@ -234,29 +180,5 @@ public class CBTInserter {
 
     public TreeNode get_root() {
         return root;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-
-        @Override
-        public String toString() {
-            return "TreeNode{" + "val=" + val + '}';
-        }
     }
 }
