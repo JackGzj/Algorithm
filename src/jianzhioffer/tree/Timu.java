@@ -3,7 +3,10 @@ package jianzhioffer.tree;
 import jianzhioffer.queue.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Timu {
     int sum;
@@ -22,6 +25,26 @@ public class Timu {
         System.out.println();
         System.out.println();
 //        System.out.println(codec.pathSumT(root, 3));
+    }
+
+    /**
+     * 二叉搜索树中两个节点之和
+     * https://leetcode-cn.com/problems/opLdQZ/
+     * @param root
+     * @param k
+     * @return
+     */
+    public boolean findTarget(TreeNode root, int k) {
+        List<TreeNode> inorderArr = new ArrayList<>();
+        inorder(root, inorderArr);
+        // 不想改 inorder 函数的实现，因此做了转换
+        Set<Integer> set = inorderArr.stream().map(n -> n.val).collect(Collectors.toSet());
+        for (int num : set) {
+            if (set.contains(k - num) && k - num != num) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
