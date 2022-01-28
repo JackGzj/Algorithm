@@ -8,7 +8,7 @@ public class Array {
 
     public static void main(String[] args) {
         Array array = new Array();
-        System.out.println(array.pivotIndex(new int[]{-1,-1,-1,-1,-1,-1}));
+        System.out.println(array.subarraySum(new int[]{1,2,3,4,5,6}, 6));
     }
 
     public List<List<Integer>> threeSum(int[] nums) {
@@ -107,6 +107,7 @@ public class Array {
             sum += nums[i];
             count += map.getOrDefault(sum-k, 0);
             map.put(sum, map.getOrDefault(sum, 0) + 1);
+            System.out.println(i + ", " + sum + ", " + map);
         }
         return count;
     }

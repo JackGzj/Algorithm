@@ -5,13 +5,35 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class HashTableTiMu {
 
     public static void main(String[] args) {
-        System.out.println(isAlienSorted(new String[]{"word","world","row"}, "worldabcefghijkmnpqstuvxyz"));
+        HashTableTiMu timu = new HashTableTiMu();
+        System.out.println(timu.replaceWords(new ArrayList<>(Arrays.asList("a", "aa", "aaa", "aaaa")), "a aa a aaaa aaa aaa aaa aaaaaa bbb baba ababa"));
+    }
+
+    /**
+     * 替换单词
+     * https://leetcode-cn.com/problems/UhWRSj/
+     * @param dictionary
+     * @param sentence
+     * @return
+     */
+    public String replaceWords(List<String> dictionary, String sentence) {
+        TreeSet<String> prefixSet = new TreeSet<>(dictionary);
+        String[] words = sentence.split(" ");
+        for (int i = 0; i < words.length; i++) {
+            for (String prefix : prefixSet) {
+                if (words[i].startsWith(prefix)) {
+                    words[i] = prefix;
+                    // 找到最短前缀，break
+                    break;
+                }
+            }
+        }
+        return String.join(" ", words);
     }
 
     public static boolean isAnagram(String s, String t) {

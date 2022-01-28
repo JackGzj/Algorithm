@@ -17,7 +17,6 @@ public class OtherTimu {
 
         public MyCalendar() {
             calendarMap = new TreeMap<>();
-            ConcurrentHashMap
         }
 
         public boolean book(int start, int end) {

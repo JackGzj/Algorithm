@@ -3,28 +3,54 @@ package jianzhioffer.tree;
 import jianzhioffer.queue.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class Timu {
+public class TreeTimu {
     int sum;
 
     public static void main(String[] args) {
-        TreeNode node4 = new TreeNode(7, null, null);
-        TreeNode node3 = new TreeNode(15, null, null);
-        TreeNode node2 = new TreeNode(20, node3, node4);
-        TreeNode root = new TreeNode(-10, null, node2);
-        Timu timu = new Timu();
-        TreeNode tn = timu.increasingBST(root);
-        while (tn != null) {
-            System.out.print(tn + " ");
-            tn = tn .right;
+        TreeTimu treeTimu = new TreeTimu();
+        System.out.println(treeTimu.minimumLengthEncoding(new String[]{"time", "atime", "btime"}));
+    }
+
+    /**
+     * 最短的单词编码
+     * https://leetcode-cn.com/problems/iSwD2y/
+     * @param words
+     * @return
+     */
+    public int minimumLengthEncoding(String[] words) {
+        String reverse;
+        Set<Trie> suffixSet = new HashSet<>();
+        int res = 0, flag;
+        for (String w : words) {
+            boolean search = false;
+            reverse = new StringBuffer(w).reverse().toString();
+            for (Trie trie : suffixSet) {
+                flag = trie.startsWithOrContains(reverse);
+                if (flag == 0) {
+                    search = true;
+                } else if (flag > 0) {
+                    System.out.println("meet contents: " + w + ", " + flag);
+                    trie.insertAndRemovePrefix(reverse);
+                    res += (w.length() - flag);
+                    search = true;
+                }
+            }
+            if (!search) {
+                System.out.println("put: " + w);
+                Trie t = new Trie();
+                t.insert(reverse);
+                suffixSet.add(t);
+                res += w.length() + 1;
+            }
         }
-        System.out.println();
-        System.out.println();
-//        System.out.println(codec.pathSumT(root, 3));
+        return res;
     }
 
     /**
