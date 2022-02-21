@@ -1,6 +1,10 @@
 package thread;
 
 public class Example3 extends Thread {
+    static {
+        System.out.println("静态初始化块执行了！");
+    }
+
     public static void main(String args[]) throws Exception {
         Example3 thread = new Example3();
         System.out.println("Starting thread...");

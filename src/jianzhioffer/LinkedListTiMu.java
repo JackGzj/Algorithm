@@ -1,5 +1,7 @@
 package jianzhioffer;
 
+import javafx.util.Pair;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -7,64 +9,110 @@ import java.util.Stack;
 public class LinkedListTiMu {
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        node1.next = node3;
-        node3.next = node4;
-        node4.next = node1;
-        insert(node3, 0);
+        ListNode node2 = new ListNode(2);
+//        ListNode node4 = new ListNode(3);
+//        ListNode node5 = new ListNode(3);
+        node1.next = node2;
+//        node3.next = node4;
+//        node4.next = node5;
+        ListNode n = removeNthFromEnd(node1, 2);
+        while (n != null) {
+            System.out.print(n.val + " ");
+            n = n.next;
+        }
+        System.out.println();
     }
 
-    public static void testNode() {
-        Node node12 = new Node(12, null);
-        Node node11 = new Node(11, node12);
-        node12.prev = node11;
+    /**
+     * 21. 合并两个有序链表
+     * https://leetcode-cn.com/problems/merge-two-sorted-lists/
+     * @param list1
+     * @param list2
+     * @return
+     */
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode head = new ListNode(-1), ptr = head;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                ptr.next = new ListNode(list1.val);
+                list1 = list1.next;
+            } else {
+                ptr.next = new ListNode(list2.val);
+                list2 = list2.next;
+            }
+            ptr = ptr.next;
+        }
+        while (list1 != null) {
+            ptr.next = new ListNode(list1.val);
+            ptr = ptr.next;
+            list1 = list1.next;
+        }
+        while (list2 != null) {
+            ptr.next = new ListNode(list2.val);
+            ptr = ptr.next;
+            list2 = list2.next;
+        }
+        return head.next;
+    }
 
-        Node node10 = new Node(10, null);
-        Node node9 = new Node(9, node10);
-        Node node8 = new Node(8, node9);
-        node8.child = node11;
-        Node node7 = new Node(7, node8);
-        node10.prev = node9;
-        node9.prev = node8;
-        node8.prev = node7;
+    /**
+     * 删除排序链表中的重复元素
+     * https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/
+     * @param head
+     * @return
+     */
+    public static ListNode deleteDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode tmp = head;
+        while (tmp.next != null) {
+            if (tmp.val == tmp.next.val) {
+                tmp.next = tmp.next.next;
+            } else {
+                tmp = tmp.next;
+            }
+        }
+        return head;
+    }
 
-        Node node6 = new Node(6, null);
-        Node node5 = new Node(5, node6);
-        Node node4 = new Node(4, node5);
-        Node node3 = new Node(3, node4);
-        node3.child = node7;
-        Node node2 = new Node(2, node3);
-        Node node1 = new Node(1, node2);
-        node6.prev = node5;
-        node5.prev = node4;
-        node4.prev = node3;
-        node3.prev = node2;
-        node2.prev = node1;
-        traverse(node1);
-        System.out.println("=====================");
-        traverse(flatten(node1));
+    public static ListNode deleteAllDuplicates(ListNode head) {
+        if (head == null) {
+            return head;
+        }
+        ListNode newHead = new ListNode(-128, head), cur = newHead;
+        while (cur.next != null && cur.next.next != null) {
+            if (cur.next.val == cur.next.next.val) {
+                int val = cur.next.val;
+                while (cur.next != null && cur.next.val == val) {
+                    cur.next = cur.next.next;
+                }
+            } else {
+                cur = cur.next;
+            }
+        }
+        return newHead.next;
     }
 
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode i = head, j = head, pre = head;
-        for (int k = 0; k < n; k++) {
-            i = i.next;
+        ListNode left = head, right = head;
+        for (int i = 0; i < n; i++) {
+            right = right.next;
         }
-        System.out.println(i);
-        if (i == null) {
-            // move head
-            pre = j.next;
-//            System.out.println(pre + ", " + pre.next);
-            return pre;
+        if (right == null) {
+            // 删除头结点
+            if (head.next != null) {
+                return head.next;
+            } else {
+                return null;
+            }
         }
-        while (i != null) {
-            i = i.next;
-            pre = j;
-            j = j.next;
+        System.out.println(right);
+        while(right.next != null) {
+            left = left.next;
+            right = right.next;
         }
-//        System.out.println("remove: " + j);
-        pre.next = j.next;
+        left.next = left.next.next;
         return head;
     }
 

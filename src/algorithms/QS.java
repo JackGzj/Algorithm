@@ -24,7 +24,6 @@ public class QS
 
     static void quickSort(int n[], int low, int high, int index)
     {
-        
         if (low > high)
             return;
         int first = low, last = high, key = n[low];
