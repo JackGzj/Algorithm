@@ -1,5 +1,3 @@
-import jianzhioffer.LinkedListTiMu;
-
 public class Solution {
 
     public static void main(String[] args) {

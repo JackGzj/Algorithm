@@ -1,6 +1,8 @@
 package jianzhioffer.search_sort;
 
 
+import jianzhioffer.linkedlist.ListNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -261,23 +263,5 @@ public class SearchSortTimu {
             }
         }
         return 0;
-    }
-
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
     }
 }

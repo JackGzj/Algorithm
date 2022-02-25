@@ -1,4 +1,4 @@
-package jianzhioffer;
+package jianzhioffer.linkedlist;
 
 import javafx.util.Pair;
 
@@ -358,47 +358,6 @@ public class LinkedListTiMu {
                 }
             }
             System.out.println();
-        }
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" + "val=" + val + '}';
-        }
-    }
-
-    static class Node {
-        public int val;
-        public Node prev;
-        public Node next;
-        public Node child;
-
-        public Node(){ }
-
-        public Node(int val, Node next) {
-            this.val = val;
-            this.next = next;
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" + "val=" + val + '}';
         }
     }
 }
