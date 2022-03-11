@@ -12,6 +12,10 @@ public class OtherTimu {
         cal.book(40, 50);
     }
 
+    /**
+     * 剑指 Offer II 058. 日程表
+     * https://leetcode-cn.com/problems/fi9suh/
+     */
     static class MyCalendar {
         TreeMap<Integer, Integer> calendarMap;
 

@@ -10,12 +10,21 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println();
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(2);
+        pq.add(4);
+        pq.add(8);
+        pq.add(9);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(pq.poll());
+        }
     }
 
 
